@@ -1,5 +1,5 @@
 
-# Employee Management System
+# Employee Management System Backend
 
 The Employee Management System is a web application developed using Spring Boot. It provides functionalities to manage employees within an organization including adding new employees, updating existing employee details, deleting employees, and retrieving employee information.
 
