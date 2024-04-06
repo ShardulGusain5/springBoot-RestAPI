@@ -1,5 +1,6 @@
 package org.shardul.springbootbackend.controller;
 
+import org.hibernate.sql.results.graph.embeddable.EmbeddableLoadingLogger;
 import org.shardul.springbootbackend.model.Employee;
 import org.shardul.springbootbackend.service.EmployeeService;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ public class EmployeeController
         this.employeeService = employeeService;
     }
     @PostMapping
+    //Inorder to get json object from body @Requestbody annotation is used in parameters
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee)
     {
         return new ResponseEntity<Employee>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
@@ -38,7 +40,12 @@ public class EmployeeController
         return new ResponseEntity<Employee>(employeeService.getEmployeeById(employeeid),HttpStatus.OK);
     }
 
-
-
-
+    //Update Employee rest api
+    @PutMapping("{id}")
+    //Inorder to get json object from body @Requestbody annotation is used in parameters
+    public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id,@RequestBody Employee employee)
+    {
+    return new ResponseEntity<Employee>(employeeService.updateEmployee(employee,id),HttpStatus.OK);
+    }
+    
 }
