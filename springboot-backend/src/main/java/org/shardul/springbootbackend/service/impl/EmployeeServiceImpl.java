@@ -52,9 +52,19 @@ public class EmployeeServiceImpl implements EmployeeService
         );
         existEmployee.setFirstName(employee.getFirstName());
         existEmployee.setLastName(employee.getLastName());
-        existEmployee.getEmail(employee.getEmail());
+        existEmployee.setEmail(employee.getEmail());
         //saving
         employeeRepository.save(existEmployee);
         return existEmployee;
+    }
+
+    @Override
+    public void deleteEmployee(long id) {
+        //Checking whether employee exist in db or not
+        employeeRepository.findById(id).orElseThrow(
+                ()->new ResourceNotFoundException("Employee", "Id", id)
+        );
+
+        employeeRepository.deleteById(id);
     }
 }

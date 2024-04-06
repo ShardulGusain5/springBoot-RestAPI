@@ -1,5 +1,6 @@
 package org.shardul.springbootbackend.controller;
 
+import org.apache.catalina.connector.Response;
 import org.hibernate.sql.results.graph.embeddable.EmbeddableLoadingLogger;
 import org.shardul.springbootbackend.model.Employee;
 import org.shardul.springbootbackend.service.EmployeeService;
@@ -47,5 +48,14 @@ public class EmployeeController
     {
     return new ResponseEntity<Employee>(employeeService.updateEmployee(employee,id),HttpStatus.OK);
     }
-    
+
+    //Delete Employee rest api
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") long id)
+    {
+        employeeService.deleteEmployee(id);
+        return new ResponseEntity<String>("Employee deleted successfully",HttpStatus.OK);
+    }
+
 }
