@@ -16,12 +16,14 @@ public class EmployeeServiceImpl implements EmployeeService
 
     private EmployeeRepository employeeRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository)
+    {
         this.employeeRepository = employeeRepository;
     }
 
     @Override
     public Employee saveEmployee(Employee employee)
+
     {
         return employeeRepository.save(employee);
     }
@@ -31,5 +33,15 @@ public class EmployeeServiceImpl implements EmployeeService
         return employeeRepository.findAll();
     }
 
-
+    @Override
+    public Employee getEmployeeById(long id) {
+       Optional<Employee> employee= employeeRepository.findById(id);
+       if(employee.isPresent()){
+           return employee.get();
+       }else
+       {
+           throw new ResourceNotFoundException("Employee","Id",id);
+           //this creates a proper message
+       }
+    }
 }

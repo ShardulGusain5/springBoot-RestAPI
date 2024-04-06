@@ -31,5 +31,10 @@ public class EmployeeController
         return employeeService.getAllEmployees();
     }
 
+    //Get Employee By ID rest API
+
+
+
+
 
 }
